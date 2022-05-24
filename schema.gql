@@ -1,0 +1,57 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type AuthorModel {
+  id: ID!
+  email: String!
+  name: String!
+  age: Float!
+  items: [ItemModel]!
+}
+
+type ItemModel {
+  id: ID!
+  title: String!
+  price: Int!
+  description: String!
+  author: AuthorModel!
+}
+
+type Query {
+  items: [ItemModel!]!
+  authors: [AuthorModel!]!
+  author(id: String!): AuthorModel!
+}
+
+type Mutation {
+  createItem(input: ItemInput!): ItemModel!
+  updateItem(id: String!, input: ItemInput!): ItemModel!
+  deleteItem(id: String!): ItemModel!
+  createAuthor(input: AuthorInput!): AuthorModel!
+  updateAuthor(id: String!, input: AuthorUpdateInput!): AuthorModel!
+  deleteAuthor(id: String!): AuthorModel!
+}
+
+input ItemInput {
+  title: String!
+  price: Int!
+  description: String!
+  authorId: ID!
+}
+
+input AuthorInput {
+  email: String!
+  username: String!
+  age: Int!
+  name: String!
+  items: [String!] = []
+}
+
+input AuthorUpdateInput {
+  email: String
+  username: String
+  age: Int
+  name: String
+  items: [String!] = []
+}
